@@ -1,4 +1,5 @@
 import PostForm from "@/components/PostForm";
+import { UserContainer } from "@/store/UserContainer";
 import React from "react";
 
 const create = () => {

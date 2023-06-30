@@ -1,4 +1,4 @@
-import { UserContainer } from "@/store/userContainer";
+import { UserContainer } from "@/store/UserContainer";
 import "@/styles/globals.css";
 import type { AppProps } from "next/app";
 
