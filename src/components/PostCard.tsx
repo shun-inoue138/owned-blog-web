@@ -3,6 +3,9 @@ import React, { FC } from "react";
 import Divider from "./Divider";
 import { Post } from "@/api/PostAPI";
 import dayjs from "dayjs";
+import Link from "next/link";
+import { RiDeleteBinLine } from "react-icons/ri";
+import { AiOutlineEdit } from "react-icons/ai";
 
 const PostCard: FC<Post> = (post) => {
   return (
@@ -27,15 +30,27 @@ const PostCard: FC<Post> = (post) => {
             <span className="bg-main text-base_text rounded-md p-2">
               投稿日
             </span>
-            <p>
-              {/* //dayjsを用いてYYMMDD HH:mm:ssで表示 */}
-              {dayjs().format("YYYY/MM/DD HH:mm")}
-            </p>
+            <p>{dayjs().format("YYYY/MM/DD HH:mm")}</p>
           </div>
           <p className="text-right">
             <span className="mr-1 text-sm text-sub_text">by</span>
             <span className="text-lg">{post.user.name}</span>
           </p>
+        </div>
+        <div className="flex gap-3 justify-end mt-4 text-2xl">
+          {/* // FIX:ハイドレートエラー */}
+          <Link href="/">hoge</Link>
+          <AiOutlineEdit className="text-blue-700" />
+          <button
+            onClick={() => {
+              const res = confirm("削除しますか？");
+              if (res) {
+                alert("削除しました");
+              }
+            }}
+          >
+            <RiDeleteBinLine className="text-red-700" />
+          </button>
         </div>
       </div>
     </div>
