@@ -15,7 +15,7 @@ const Create = () => {
   return (
     <>
       {/* 編集画面の場合データをpropsで渡す。 */}
-      <PostForm />
+      <PostForm userId={user._id} />
     </>
   );
 };

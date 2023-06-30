@@ -4,6 +4,7 @@ import { ImCross } from "react-icons/im";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { PostAPI } from "@/api/PostAPI";
+import { User } from "@/api/UserAPI";
 
 const schema = z.object({
   title: z
@@ -24,7 +25,7 @@ const schema = z.object({
 });
 type FormData = z.infer<typeof schema>;
 
-export default function PostForm() {
+export default function PostForm({ userId }: { userId: User["_id"] }) {
   const {
     register,
     handleSubmit,
@@ -40,9 +41,10 @@ export default function PostForm() {
   const onSubmit = async (data: FormData) => {
     try {
       console.log(data);
-      // TODO:編集の場合はPostAPI.updateを呼び出す
-      await PostAPI.create(data);
+      // TODO:編集の場合はPostAPI.updateを呼び出す.user:userIdに違和感。設計がそもそもおかしいかも。
+      await PostAPI.create({ ...data, user: userId });
       // TODO:一覧画面or詳細画面に画面遷移
+      alert("投稿しました");
     } catch (err) {
       console.log(err);
       // TODO:alertではなくトーストに変更
