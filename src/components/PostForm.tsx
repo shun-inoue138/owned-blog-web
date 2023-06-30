@@ -5,6 +5,7 @@ import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { PostAPI } from "@/api/PostAPI";
 import { User } from "@/api/UserAPI";
+import { useRouter } from "next/router";
 
 const schema = z.object({
   title: z
@@ -26,6 +27,8 @@ const schema = z.object({
 type FormData = z.infer<typeof schema>;
 
 export default function PostForm({ userId }: { userId: User["_id"] }) {
+  const router = useRouter();
+
   const {
     register,
     handleSubmit,
@@ -45,6 +48,7 @@ export default function PostForm({ userId }: { userId: User["_id"] }) {
       await PostAPI.create({ ...data, user: userId });
       // TODO:一覧画面or詳細画面に画面遷移
       alert("投稿しました");
+      router.push("/posts");
     } catch (err) {
       console.log(err);
       // TODO:alertではなくトーストに変更
