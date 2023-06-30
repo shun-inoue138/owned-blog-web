@@ -1,3 +1,4 @@
+import Header from "@/components/Header";
 import PostForm from "@/components/PostForm";
 import { UserContainer } from "@/store/UserContainer";
 import React from "react";
@@ -13,10 +14,13 @@ const Create = () => {
   }
 
   return (
-    <>
+    <div className="overflow-hidden h-screen">
+      <Header />
       {/* 編集画面の場合データをpropsで渡す。 */}
-      <PostForm userId={user._id} />
-    </>
+      <div className="mt-64">
+        <PostForm userId={user._id} />
+      </div>
+    </div>
   );
 };
 
