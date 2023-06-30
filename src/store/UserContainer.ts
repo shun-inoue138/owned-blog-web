@@ -13,7 +13,7 @@ const useUserContainer = () => {
   // TODO:ログイン画面未実装のため、仮にここでユーザーを取得しsetUserしている。実装完了後はログイン完了のタイミングでsetUserする
   useEffect(() => {
     const fetchUser = async () => {
-      const user = await UserAPI.getOne(mockId.admin);
+      const user = await UserAPI.findOne(mockId.admin);
       setUser(user);
     };
     fetchUser();
