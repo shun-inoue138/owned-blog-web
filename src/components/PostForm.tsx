@@ -64,6 +64,7 @@ export default function PostForm() {
             <p className="text-accent">{errors.title.message}</p>
           )}
         </label>
+        {/* // TODO: 文字数カウンター */}
 
         <label className="mb-6 block">
           <h2>本文</h2>
@@ -75,6 +76,7 @@ export default function PostForm() {
             <p className="text-accent w-full">{errors.content.message}</p>
           )}
         </label>
+        {/* // TODO:文字数カウンター */}
         <div className="flex justify-between ">
           <div>
             <label className="block">
