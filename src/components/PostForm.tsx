@@ -4,6 +4,7 @@ import { BiImageAdd } from "react-icons/bi";
 import { ImCross } from "react-icons/im";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { PostAPI } from "@/api/PostAPI";
 
 const schema = z.object({
   title: z
@@ -24,7 +25,6 @@ const schema = z.object({
 });
 type FormData = z.infer<typeof schema>;
 
-//投稿ページと編集ページの共用コンポーネントにする
 export default function PostForm() {
   const {
     register,
@@ -37,14 +37,19 @@ export default function PostForm() {
   });
   const image = watch("image");
   const isPrivate = watch("isPrivate");
+
   const onSubmit = async (data: FormData) => {
     try {
       console.log(data);
-      // if (result.status === 200) {
-      //   ページを遷移させるなどの処理
-      // }
+      // TODO:編集の場合はPostAPI.updateを呼び出す
+      await PostAPI.create(data);
+      // TODO:一覧画面or詳細画面に画面遷移
     } catch (err) {
       console.log(err);
+      // TODO:alertではなくトーストに変更
+      alert(
+        "エラーが発生しました。しばらく時間をおいてから再度お試しください。"
+      );
     }
   };
 
