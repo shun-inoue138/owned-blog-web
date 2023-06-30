@@ -1,4 +1,5 @@
 import { Post, PostAPI } from "@/api/PostAPI";
+import Header from "@/components/Header";
 import PostCard from "@/components/PostCard";
 import { GetStaticPaths, GetStaticProps, InferGetStaticPropsType } from "next";
 
@@ -26,6 +27,7 @@ const PostDetail = ({
 }: InferGetStaticPropsType<typeof getStaticProps>) => {
   return (
     <div>
+      <Header />
       {/* TODO: ここでPostDetailコンポーネントを呼び出す。とりあえずPostCardで代用 */}
       <PostCard {...post} />
     </div>
