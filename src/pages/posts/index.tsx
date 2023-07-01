@@ -5,6 +5,7 @@ import Link from "next/link";
 import Header from "@/components/Header";
 import { useEffect, useMemo, useState } from "react";
 import { UserContainer } from "@/store/UserContainer";
+import { getIsMyPost } from "@/utils/getIsMyPost";
 
 export const getStaticProps: GetStaticProps = async () => {
   const posts = await PostAPI.findAll();
@@ -55,7 +56,7 @@ const Index: React.FC<Props> = ({ posts }) => {
 
       <div className="w-[96%] max-w-[1200px] mx-auto grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2  gap-6 mt-24">
         {postsToDisplay.map((post) => {
-          const isMyPost = Boolean(user?._id && user._id === post.user._id);
+          const isMyPost = getIsMyPost(user, post);
           return (
             <Link key={post._id} href={`/posts/${post._id}`}>
               <PostCard isMyPost={isMyPost} {...post} />
