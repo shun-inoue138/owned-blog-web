@@ -14,7 +14,7 @@ const Create = () => {
   }
 
   return (
-    <div className="overflow-hidden h-screen">
+    <div className="h-screen">
       <Header />
       {/* 編集画面の場合データをpropsで渡す。 */}
       <div className="mt-64">
