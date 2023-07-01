@@ -3,7 +3,6 @@ import React, { FC, memo } from "react";
 import Divider from "./Divider";
 import { Post } from "@/api/PostAPI";
 import dayjs from "dayjs";
-import Link from "next/link";
 import clsx from "clsx";
 
 const PostCard: FC<Post & { isMyPost: boolean }> = ({ isMyPost, ...post }) => {
@@ -36,7 +35,7 @@ const PostCard: FC<Post & { isMyPost: boolean }> = ({ isMyPost, ...post }) => {
             <span
               className={clsx(
                 "text-lg",
-                isMyPost && "text-xl text-info font-semibold"
+                isMyPost && "text-xl text-success font-semibold"
               )}
             >
               {post.user.name}
