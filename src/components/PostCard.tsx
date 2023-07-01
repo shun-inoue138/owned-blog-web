@@ -30,7 +30,7 @@ const PostCard: FC<Post> = (post) => {
             <span className="bg-main text-base_text rounded-md p-2">
               投稿日
             </span>
-            <p>{dayjs().format("YYYY/MM/DD HH:mm")}</p>
+            <p>{dayjs(post.createdAt).format("YYYY/MM/DD HH:mm")}</p>
           </div>
           <p className="text-right">
             <span className="mr-1 text-sm text-sub_text">by</span>
