@@ -1,13 +1,12 @@
 import Image from "next/image";
-import React, { FC } from "react";
+import React, { FC, memo } from "react";
 import Divider from "./Divider";
 import { Post } from "@/api/PostAPI";
 import dayjs from "dayjs";
 import Link from "next/link";
-import { RiDeleteBinLine } from "react-icons/ri";
-import { AiOutlineEdit } from "react-icons/ai";
+import clsx from "clsx";
 
-const PostCard: FC<Post> = (post) => {
+const PostCard: FC<Post & { isMyPost: boolean }> = ({ isMyPost, ...post }) => {
   return (
     <div>
       <div className="relative w-full h-auto">
@@ -34,27 +33,19 @@ const PostCard: FC<Post> = (post) => {
           </div>
           <p className="text-right">
             <span className="mr-1 text-sm text-sub_text">by</span>
-            <span className="text-lg">{post.user.name}</span>
+            <span
+              className={clsx(
+                "text-lg",
+                isMyPost && "text-xl text-info font-semibold"
+              )}
+            >
+              {post.user.name}
+            </span>
           </p>
-        </div>
-        <div className="flex gap-3 justify-end mt-4 text-2xl">
-          {/* // FIX:ハイドレートエラー */}
-          <Link href="/">hoge</Link>
-          <AiOutlineEdit className="text-blue-700" />
-          <button
-            onClick={() => {
-              const res = confirm("削除しますか？");
-              if (res) {
-                alert("削除しました");
-              }
-            }}
-          >
-            <RiDeleteBinLine className="text-red-700" />
-          </button>
         </div>
       </div>
     </div>
   );
 };
 
-export default PostCard;
+export default memo(PostCard);
