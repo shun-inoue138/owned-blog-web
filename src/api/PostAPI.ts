@@ -28,4 +28,8 @@ export class PostAPI {
     const res = await api.post("/posts", data);
     return res.data;
   }
+
+  static async delete(id: string): Promise<void> {
+    await api.delete(`/posts/${id}`);
+  }
 }
