@@ -1,7 +1,11 @@
+import { useRouter } from "next/router";
+import { useEffect } from "react";
+
 export default function Home() {
-  return (
-    <div className="flex flex-col items-center justify-center min-h-screen py-2">
-      hello world
-    </div>
-  );
+  const router = useRouter();
+  useEffect(() => {
+    router.push("/posts");
+  }, []);
+  // TODO:他の方法考える
+  return <div>記事一覧画面に遷移します</div>;
 }

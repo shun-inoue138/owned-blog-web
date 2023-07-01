@@ -11,12 +11,12 @@ export type User = {
 };
 
 export class UserAPI {
-  static async getAll(): Promise<User[]> {
+  static async findAll(): Promise<User[]> {
     const res = await api.get("/users");
     return res.data;
   }
 
-  static async getOne(id: string): Promise<User> {
+  static async findOne(id: string): Promise<User> {
     const res = await api.get(`/users/${id}`);
     return res.data;
   }

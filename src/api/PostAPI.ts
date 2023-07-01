@@ -13,12 +13,12 @@ export type Post = {
 };
 
 export class PostAPI {
-  static async getAll(): Promise<Post[]> {
+  static async findAll(): Promise<Post[]> {
     const res = await api.get("/posts");
     return res.data;
   }
 
-  static async getOne(id: string): Promise<Post> {
+  static async findOne(id: string): Promise<Post> {
     const res = await api.get(`/posts/${id}`);
     return res.data;
   }
@@ -27,5 +27,9 @@ export class PostAPI {
   static async create(data: object): Promise<Post> {
     const res = await api.post("/posts", data);
     return res.data;
+  }
+
+  static async delete(id: string): Promise<void> {
+    await api.delete(`/posts/${id}`);
   }
 }
