@@ -1,6 +1,6 @@
 import Image from "next/image";
 import React, { FC, memo } from "react";
-import Divider from "./Divider";
+import Divider from "./elements/Divider";
 import { Post } from "@/api/PostAPI";
 import dayjs from "dayjs";
 import clsx from "clsx";

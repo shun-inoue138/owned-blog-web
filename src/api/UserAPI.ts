@@ -22,8 +22,13 @@ export class UserAPI {
   }
 
   // TODO:引数の型修正
-  static async signUp(data: object): Promise<User> {
-    const res = await api.post("/users", data);
+  static async signUp(data: object): Promise<{ user: User; token: string }> {
+    const res = await api.post("/users/sign-up", data);
+    return res.data;
+  }
+
+  static async signIn(data: object): Promise<{ user: User; token: string }> {
+    const res = await api.post("/users/sign-in", data);
     return res.data;
   }
 }
