@@ -1,5 +1,5 @@
 import { User } from "./UserAPI";
-import { api } from "./index";
+import { api, apiWithFile } from "./index";
 
 export type Post = {
   _id: string;
@@ -25,7 +25,7 @@ export class PostAPI {
 
   // TODO:引数の型修正
   static async create(data: object): Promise<Post> {
-    const res = await api.post("/posts", data);
+    const res = await apiWithFile.post("/posts", data);
     return res.data;
   }
 

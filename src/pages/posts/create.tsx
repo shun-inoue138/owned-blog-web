@@ -17,7 +17,7 @@ const Create = () => {
     <div className="h-screen">
       <Header />
       {/* 編集画面の場合データをpropsで渡す。 */}
-      <div className="mt-64">
+      <div className="pt-16">
         <PostForm userId={user._id} />
       </div>
     </div>
