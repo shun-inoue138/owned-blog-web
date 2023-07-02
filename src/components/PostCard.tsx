@@ -4,19 +4,14 @@ import Divider from "./Divider";
 import { Post } from "@/api/PostAPI";
 import dayjs from "dayjs";
 import clsx from "clsx";
+import Base64Image from "./Base64Image";
 
 const PostCard: FC<Post & { isMyPost: boolean }> = ({ isMyPost, ...post }) => {
   return (
     <div>
       <div className="relative w-full h-auto">
         {/* TODO:要修正 */}
-        <Image
-          src="/masahiro-miyagi-18ef3TE0jdQ-unsplash.jpg"
-          alt="画像なし"
-          layout="responsive"
-          width={100}
-          height={100}
-        />
+        <Base64Image base64Image={post.image} />
       </div>
       <div className="p-6 shadow-md">
         <h2 className="text-lg truncate max-w-[15em]">{post.title}</h2>
