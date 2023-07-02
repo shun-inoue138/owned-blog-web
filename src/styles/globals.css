@@ -7,3 +7,9 @@
     @apply bg-base text-main_text;
   }
 }
+
+@layer components {
+  .auth-input {
+    @apply outline rounded-md py-1 md:py-2 px-4 w-full;
+  }
+}
