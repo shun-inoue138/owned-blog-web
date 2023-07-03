@@ -3,9 +3,11 @@ import { BiImageAdd } from "react-icons/bi";
 import { ImCross } from "react-icons/im";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { PostAPI } from "@/api/PostAPI";
+import { Post, PostAPI } from "@/api/PostAPI";
 import { User } from "@/api/UserAPI";
 import { useRouter } from "next/router";
+import { useEffect } from "react";
+import clsx from "clsx";
 
 const schema = z.object({
   title: z
@@ -17,7 +19,7 @@ const schema = z.object({
     .min(1, {
       message: "入力必須です",
     })
-    .max(1000, { message: "1000文字以内で入力してください" }),
+    .max(1200, { message: "1200文字以内で入力してください" }),
   image: z
     .custom<FileList>()
     .transform((file) => file[0])
@@ -26,9 +28,16 @@ const schema = z.object({
 });
 type FormData = z.infer<typeof schema>;
 
-export default function PostForm({ userId }: { userId: User["_id"] }) {
+export default function PostForm({
+  userId,
+  pageTitle,
+  postToEdit,
+}: {
+  userId: User["_id"];
+  pageTitle: string;
+  postToEdit?: Post;
+}) {
   const router = useRouter();
-
   const {
     register,
     handleSubmit,
@@ -37,9 +46,17 @@ export default function PostForm({ userId }: { userId: User["_id"] }) {
     setValue,
   } = useForm<FormData>({
     resolver: zodResolver(schema),
+    defaultValues: {
+      title: postToEdit?.title,
+      content: postToEdit?.content,
+      isPrivate: postToEdit?.isPrivate,
+      // TODO:base64形式の画像文字列をFile形式に変換する必要がある
+    },
   });
+
   const image = watch("image");
   const isPrivate = watch("isPrivate");
+  const contentLength = watch("content")?.length;
 
   const onSubmit = async (data: FormData) => {
     try {
@@ -64,26 +81,38 @@ export default function PostForm({ userId }: { userId: User["_id"] }) {
       onSubmit={handleSubmit(onSubmit)}
     >
       <h1 className="mb-5 text-3xl text-main_text font-bold text-center">
-        記事新規作成
+        {pageTitle}
       </h1>
       <label className="mb-6 block">
         <h2>タイトル</h2>
         <input className="w-full  p-2 rounded" {...register("title")} />
         {errors?.title && <p className="text-accent">{errors.title.message}</p>}
       </label>
-      {/* // TODO: 文字数カウンター */}
-
       <label className="mb-6 block">
         <h2>本文</h2>
+        {/* // TODO:画面幅に応じて動的にrowsを変更したい */}
         <textarea
           className="w-full  p-2 rounded mb-0"
+          rows={5}
           {...register("content")}
         />
-        {errors?.content && (
-          <p className="text-accent w-full">{errors.content.message}</p>
-        )}
+        <div className="flex">
+          {errors?.content && (
+            <p className="text-accent w-full ">{errors.content.message}</p>
+          )}
+          <div
+            className={clsx(
+              "flex justify-end gap-2 w-full",
+              contentLength > 1200 && "text-alert"
+            )}
+          >
+            {contentLength ? <span>{contentLength}</span> : <span>0</span>}
+            <span>/</span>
+            <span>1200</span>
+          </div>
+        </div>
       </label>
-      {/* // TODO:文字数カウンター */}
+
       <div className="flex justify-between ">
         <div>
           <label className="block">
