@@ -8,15 +8,12 @@ import { UserContainer } from "@/store/UserContainer";
 import { getIsMyPost } from "@/utils/getIsMyPost";
 
 export const getStaticProps: GetStaticProps = async () => {
-  const posts = await PostAPI.findAll();
-  console.log(posts);
-  console.log(posts.length);
-
+  const posts = await PostAPI.findAllExceptPrivate();
   return {
     props: {
       posts,
     },
-    // revalidate: 60,
+    revalidate: 60,
   };
 };
 

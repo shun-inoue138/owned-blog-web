@@ -18,6 +18,11 @@ export class PostAPI {
     return res.data;
   }
 
+  static async findAllExceptPrivate(): Promise<Post[]> {
+    const res = await api.get("/posts/except/private");
+    return res.data;
+  }
+
   static async findOne(id: string): Promise<Post> {
     const res = await api.get(`/posts/${id}`);
     return res.data;
