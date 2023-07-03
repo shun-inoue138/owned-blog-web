@@ -43,8 +43,8 @@ const Index: React.FC<Props> = ({ posts }) => {
     <>
       <Header />
       {isPostableUser && (
-        <div className=" ml-8 mt-7 sticky top-24 z-10">
-          <label>
+        <div className="text-center font-bold text-2xl sticky top-24 z-10 py-2 opacity-95">
+          <label className="flex justify-center">
             <input
               type="checkbox"
               onChange={() => {
