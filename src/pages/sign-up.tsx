@@ -63,21 +63,21 @@ const SignUp = () => {
       >
         <div>
           <label>
-            <div className=" text-sub_text text-xl  mb-2">名前</div>
+            <div className=" text-sub_text  mb-2">名前</div>
             <input className="auth-input" {...register("name")} />
             <ErrorMessage>{errors.name && errors.name.message}</ErrorMessage>
           </label>
         </div>
         <div>
           <label>
-            <div className=" text-sub_text text-xl  mb-2">Eメール</div>
+            <div className=" text-sub_text  mb-2">Eメール</div>
             <input className="auth-input" {...register("email")} />
             <ErrorMessage>{errors.email && errors.email.message}</ErrorMessage>
           </label>
         </div>
         <div>
           <label>
-            <div className=" text-sub_text text-xl  mb-2">パスワード</div>
+            <div className=" text-sub_text  mb-2">パスワード</div>
             <input
               className="auth-input"
               {...register("password")}
@@ -90,7 +90,7 @@ const SignUp = () => {
         </div>
         <div>
           <label>
-            <div className=" text-sub_text text-xl  mb-2">パスワード確認</div>
+            <div className=" text-sub_text  mb-2">パスワード確認</div>
             <input
               className="auth-input"
               {...register("passwordConfirmation")}

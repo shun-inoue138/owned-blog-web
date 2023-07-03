@@ -65,7 +65,7 @@ const SignIn = () => {
         >
           <div>
             <label>
-              <div className=" text-sub_text text-xl  mb-2">Eメール</div>
+              <div className=" text-sub_text   mb-2">Eメール</div>
               <input {...register("email")} className="auth-input" />
               <ErrorMessage>
                 {errors.email && errors.email.message}
@@ -74,7 +74,7 @@ const SignIn = () => {
           </div>
           <div>
             <label>
-              <div className=" text-sub_text text-xl  mb-2">パスワード</div>
+              <div className=" text-sub_text   mb-2">パスワード</div>
               {/* // TODO:赤線対処 */}
               <input
                 {...register("password")}
