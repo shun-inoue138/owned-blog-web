@@ -41,6 +41,11 @@ export class PostAPI {
     return res.data;
   }
 
+  static async edit(id: string, data: object): Promise<Post> {
+    const res = await apiWithFile.put(`/posts/${id}`, data);
+    return res.data;
+  }
+
   static async delete(id: string): Promise<void> {
     await api.delete(`/posts/${id}`);
   }

@@ -33,7 +33,7 @@ const Edit = () => {
           {/* AuthCheckerPerPageがsignInUser !== undefinedを担保 */}
           <PostForm
             userId={postToEdit?.user._id as string}
-            pageTitle="記事編集"
+            postType="edit"
             postToEdit={postToEdit}
           />
         </div>

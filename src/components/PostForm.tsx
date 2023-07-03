@@ -30,12 +30,12 @@ type FormData = z.infer<typeof schema>;
 
 export default function PostForm({
   userId,
-  pageTitle,
   postToEdit,
+  postType,
 }: {
   userId: User["_id"];
-  pageTitle: string;
   postToEdit?: Post;
+  postType: "create" | "edit";
 }) {
   const router = useRouter();
   const {
@@ -60,11 +60,17 @@ export default function PostForm({
 
   const onSubmit = async (data: FormData) => {
     try {
-      console.log(data.image);
       // TODO:編集の場合はPostAPI.updateを呼び出す.user:userIdに違和感。設計がそもそもおかしいかも。
-      await PostAPI.create({ ...data, user: userId });
+      if (postType === "create") {
+        await PostAPI.create({ ...data, user: userId });
+      } else if (postType === "edit") {
+        await PostAPI.edit(postToEdit?._id as string, {
+          ...data,
+          user: userId,
+        });
+      }
       // TODO:一覧画面or詳細画面に画面遷移
-      alert("投稿しました");
+      alert(postType === "create" ? "作成しました" : "編集しました");
       router.push("/posts");
     } catch (err) {
       console.log(err);
@@ -81,7 +87,7 @@ export default function PostForm({
       onSubmit={handleSubmit(onSubmit)}
     >
       <h1 className="mb-5 text-3xl text-main_text font-bold text-center">
-        {pageTitle}
+        {postType === "create" ? "記事新規作成" : "記事編集"}
       </h1>
       <label className="mb-6 block">
         <h2>タイトル</h2>
@@ -114,7 +120,8 @@ export default function PostForm({
       </label>
 
       <div className="flex justify-between ">
-        <div>
+        {/* // TODO:画像編集機能を追加する */}
+        <div className={postType === "edit" ? "hidden" : ""}>
           <label className="block">
             <BiImageAdd className="text-3xl text-main_text" />
             <input type="file" className="hidden" {...register("image")} />
