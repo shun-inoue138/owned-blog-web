@@ -7,7 +7,7 @@ const Base64Image = ({ base64Image }: { base64Image?: string }) => {
     ? `data:image/jpeg;base64,${base64Image}`
     : "/no_image_yoko.jpg";
   return (
-    <div className="relative w-full pt-[75%]">
+    <div className="relative w-full pt-[60%]">
       {/* // TODO:layoutとobjectFitが非推奨? */}
       <Image
         src={src}
