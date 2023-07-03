@@ -23,6 +23,13 @@ export class PostAPI {
     return res.data;
   }
 
+  static async findAllByUser(id: string): Promise<Post[]> {
+    console.log(`/posts/user/${id}`);
+
+    const res = await api.get(`/posts/user/${id}`);
+    return res.data;
+  }
+
   static async findOne(id: string): Promise<Post> {
     const res = await api.get(`/posts/${id}`);
     return res.data;
