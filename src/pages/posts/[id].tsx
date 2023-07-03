@@ -33,10 +33,14 @@ const PostDetail = ({
   post,
 }: InferGetStaticPropsType<typeof getStaticProps>) => {
   const router = useRouter();
-  const { user } = UserContainer.useContainer();
+  const { signInUser } = UserContainer.useContainer();
+  // TODO:なぜか動かない
   const isMyPost = useMemo(() => {
-    return getIsMyPost(user, post);
-  }, [user, post]);
+    return getIsMyPost(signInUser, post);
+  }, [signInUser, post]);
+
+  console.log(isMyPost);
+
   return (
     <div>
       <Header />

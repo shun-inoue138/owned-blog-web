@@ -28,7 +28,7 @@ type FormData = z.infer<typeof schema>;
 const SignIn = () => {
   const [isLoading, setIsLoading] = React.useState(false);
   const router = useRouter();
-  const { setUser } = UserContainer.useContainer();
+  const { setSignInUser } = UserContainer.useContainer();
   const {
     register,
     handleSubmit,
@@ -44,7 +44,7 @@ const SignIn = () => {
     try {
       const { user, token } = await UserAPI.signIn(data);
       localStorage.setItem("token", token);
-      setUser(user);
+      setSignInUser(user);
       setIsLoading(false);
       alert("ログインしました");
       router.push("/posts");
