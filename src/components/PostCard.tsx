@@ -6,7 +6,10 @@ import dayjs from "dayjs";
 import clsx from "clsx";
 import Base64Image from "./Base64Image";
 
-const PostCard: FC<Post & { isMyPost: boolean }> = ({ isMyPost, ...post }) => {
+const PostCard: FC<Post & { isMyPost?: boolean }> = ({
+  isMyPost = false,
+  ...post
+}) => {
   return (
     <div>
       <div className="relative w-full h-auto">
