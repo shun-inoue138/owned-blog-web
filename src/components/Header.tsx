@@ -14,7 +14,7 @@ const Header = () => {
   }, [signInUser?.role]);
 
   return (
-    <div className="h-24 px-4 bg-main  flex items-center justify-between text-base_text text-xl w-full sticky top-0 opacity-95 z-10">
+    <div className="h-24 px-4 bg-main  flex items-center justify-between text-base_text text-xl w-full sticky top-0 opacity-95 z-50">
       <Link href="/posts">MY BLOG</Link>
       <div className="flex gap-6 items-end">
         {isPostableUser && (

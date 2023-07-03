@@ -25,7 +25,7 @@ const UserPage: FC<{ user: User; posts: Post[] }> = ({ user, posts }) => {
     <div>
       <Header />
       {/* //top-24はヘッダーの高さに依存している　→　Headerに移した方がいい？ */}
-      <h1 className="text-center font-bold text-3xl sticky top-24 z-10 bg-main text-base_text pb-2 opacity-95">
+      <h1 className="text-center font-bold text-3xl sticky top-24 z-50 bg-main text-base_text pb-2 opacity-95">
         {user.name} <span className="text-xl">記事一覧</span>
       </h1>
       <div className="w-[96%] max-w-[1200px] mx-auto grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2  gap-6 mt-24">
