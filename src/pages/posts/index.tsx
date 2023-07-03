@@ -58,11 +58,10 @@ const Index: React.FC<Props> = ({ posts }) => {
 
       <div className="w-[96%] max-w-[1200px] mx-auto grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2  gap-6 mt-24">
         {postsToDisplay.map((post) => {
-          const isMyPost = getIsMyPost(signInUser, post);
           return (
             // TODO:PostCardにLinkを含めるべきかもしれない
             <Link key={post._id} href={`/posts/${post._id}`}>
-              <PostCard isMyPost={isMyPost} {...post} />
+              <PostCard {...post} />
             </Link>
           );
         })}
