@@ -23,6 +23,13 @@ export class PostAPI {
     return res.data;
   }
 
+  static async findAllByUser(id: string): Promise<Post[]> {
+    console.log(`/posts/user/${id}`);
+
+    const res = await api.get(`/posts/user/${id}`);
+    return res.data;
+  }
+
   static async findOne(id: string): Promise<Post> {
     const res = await api.get(`/posts/${id}`);
     return res.data;
@@ -31,6 +38,11 @@ export class PostAPI {
   // TODO:引数の型修正
   static async create(data: object): Promise<Post> {
     const res = await apiWithFile.post("/posts", data);
+    return res.data;
+  }
+
+  static async edit(id: string, data: object): Promise<Post> {
+    const res = await apiWithFile.put(`/posts/${id}`, data);
     return res.data;
   }
 

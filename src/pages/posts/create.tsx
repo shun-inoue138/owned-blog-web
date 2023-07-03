@@ -14,7 +14,7 @@ const Create = () => {
         {/* 編集画面の場合データをpropsで渡す。 */}
         <div className="pt-16">
           {/* AuthCheckerPerPageがsignInUser !== undefinedを担保 */}
-          <PostForm userId={signInUser!._id} />
+          <PostForm userId={signInUser!._id} postType="create" />
         </div>
       </div>
     </AuthCheckerPerPage>
