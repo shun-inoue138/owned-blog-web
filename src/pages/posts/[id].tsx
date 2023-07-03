@@ -39,15 +39,13 @@ const PostDetail = ({
     return getIsMyPost(signInUser, post);
   }, [signInUser, post]);
 
-  console.log(isMyPost);
-
   return (
     <div>
       <Header />
       {/* TODO: ここでPostItemコンポーネントを呼び出す。とりあえずPostCardで代用 */}
       <PostCard isMyPost={isMyPost} {...post} />
       {isMyPost && (
-        <div className="flex gap-3 justify-end mt-4 text-2xl">
+        <div className="flex gap-3 justify-end mt-4 mr-8  text-2xl">
           <Link href={`/posts/${post._id}/edit`}>
             <AiOutlineEdit className="text-info" />
           </Link>
