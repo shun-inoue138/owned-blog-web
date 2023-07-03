@@ -22,7 +22,6 @@ const Header = () => {
             <BsPencilSquare />
           </Link>
         )}
-
         {signInUser ? (
           <button
             onClick={() => {
@@ -41,9 +40,11 @@ const Header = () => {
           </Link>
         )}
 
-        <span className="text-base ml-4 max-w-[12em] truncate">
-          {signInUser?.name && signInUser.name + "さん"}
-        </span>
+        <Link href={`/users/${signInUser?._id}`}>
+          <span className="text-base ml-4 max-w-[12em] truncate">
+            {signInUser?.name && signInUser.name + "さん"}
+          </span>
+        </Link>
       </div>
     </div>
   );
