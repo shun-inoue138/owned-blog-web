@@ -28,6 +28,7 @@ const Header = () => {
             onClick={() => {
               if (confirm("ログアウトしますか？")) {
                 setSignInUser(undefined);
+                localStorage.removeItem("token");
                 router.push("/sign-in");
               }
             }}

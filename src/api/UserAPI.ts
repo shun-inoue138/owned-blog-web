@@ -31,4 +31,9 @@ export class UserAPI {
     const res = await api.post("/users/sign-in", data);
     return res.data;
   }
+
+  static async verifyToken(): Promise<User | null> {
+    const res = await api.post("/users/verify-token");
+    return res.data;
+  }
 }
