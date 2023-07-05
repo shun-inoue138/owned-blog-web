@@ -1,4 +1,4 @@
-import { UserAPI } from "@/api/UserAPI";
+import { signIn } from "@/api/UserAPI";
 import ErrorMessage from "@/components/elements/ErrorMessage";
 import SimpleButton from "@/components/elements/SimpleButton";
 import StyledInput from "@/components/elements/StyledInput";
@@ -42,7 +42,7 @@ const SignIn = () => {
   const onSubmitHandler = async (data: FormData) => {
     setIsLoading(true);
     try {
-      const { user, token } = await UserAPI.signIn(data);
+      const { user, token } = await signIn(data);
       localStorage.setItem("token", token);
       setSignInUser(user);
       setIsLoading(false);
@@ -86,7 +86,7 @@ const SignIn = () => {
               </ErrorMessage>
             </label>
           </div>
-          <SimpleButton Btype="main" disabled={!isValid} type="submit">
+          <SimpleButton Btype="main" disabled={!isValid || isLoading} type="submit">
             {isLoading ? "Loading..." : "ログイン"}
           </SimpleButton>
           <SimpleButton

@@ -1,5 +1,5 @@
 import { Post, PostAPI } from "@/api/PostAPI";
-import { User, UserAPI } from "@/api/UserAPI";
+import { User, findOne } from "@/api/UserAPI";
 import Header from "@/components/Header";
 import PostCard from "@/components/PostCard";
 import PrivateBadge from "@/components/elements/PrivateBadge";
@@ -12,7 +12,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   const userId = params?.id;
 
   // TODO:型キャストなるべく避けたい
-  const user = await UserAPI.findOne(userId as string);
+  const user = await findOne(userId as string);
   const posts = await PostAPI.findAllByUser(userId as string);
 
   return {

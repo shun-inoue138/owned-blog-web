@@ -28,6 +28,7 @@ export const apiWithFile = axios.create({
 });
 
 api.interceptors.request.use((config) => {
+  // token空ははじきたい
   config.headers["Authorization"] = `bearer ${getToken()}`;
   config.headers["Content-Type"] = "application/json";
   return config;
