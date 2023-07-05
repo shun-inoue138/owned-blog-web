@@ -48,11 +48,10 @@ const PostDetail = ({
   return (
     <div className="mb-8">
       <Header />
-      {/* TODO: ここでPostItemコンポーネントを呼び出す。とりあえずPostCardで代用 */}
       <h1 className="text-center font-bold text-2xl sticky top-24 z-50 bg-main text-base_text pb-2 opacity-95 truncate">
         {post.title}
       </h1>
-      <div className="w-full h-full relative">
+      <div className="max-w-[1200px] h-full mx-auto relative">
         <div
           className={clsx(
             showImage ? "h-full" : "h-0",
