@@ -1,7 +1,6 @@
 import { UserAPI } from "@/api/UserAPI";
 import ErrorMessage from "@/components/elements/ErrorMessage";
 import SimpleButton from "@/components/elements/SimpleButton";
-import StyledInput from "@/components/elements/StyledInput";
 import AuthLayout from "@/components/layouts/AuthLayout";
 import { UserContainer } from "@/store/UserContainer";
 import { zodResolver } from "@hookform/resolvers/zod";
