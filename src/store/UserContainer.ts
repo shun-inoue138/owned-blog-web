@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { createContainer } from "unstated-next";
 import axios from "axios";
-import { User, UserAPI } from "@/api/UserAPI";
+import { User, verifyToken } from "@/api/UserAPI";
 const useUserContainer = () => {
   const [signInUser, setSignInUser] = useState<User | undefined>(undefined);
 
@@ -19,6 +19,16 @@ const useUserContainer = () => {
   //   };
   //   fetchUser();
   // }, []);
+
+  useEffect(() => {
+    //アプリをリロードした時に手元のtokenが有効な場合ログイン状態に移行する。
+    const verify = async () => {
+      const signInUser = await verifyToken();
+      if (!signInUser) return;
+      setSignInUser(signInUser);
+    };
+    verify();
+  }, []);
 
   return { signInUser, setSignInUser };
 };
